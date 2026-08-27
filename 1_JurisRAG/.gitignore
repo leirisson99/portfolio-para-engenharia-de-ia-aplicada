@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Ambiente virtual
+.venv/
+venv/
+
+# Variáveis de ambiente / segredos
+.env
+
+# Ferramentas
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Dados — artefatos brutos/intermediários não são versionados;
+# o golden dataset (data/golden/) É versionado (RNF03 / RN05).
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Editor/SO
+.DS_Store

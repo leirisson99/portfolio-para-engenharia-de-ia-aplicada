@@ -1,0 +1,48 @@
+[project]
+name = "jurisrag"
+version = "0.1.0"
+description = "RAG jurídico com avaliação automatizada de qualidade (jurisprudência STJ)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "langchain",
+    "langgraph",
+    "langchain-postgres",
+    "psycopg[binary]",
+    "pgvector",
+    "ragas",
+    "streamlit",
+    "plotly",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+mypy_path = "src"
+ignore_missing_imports = true
