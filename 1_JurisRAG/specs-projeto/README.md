@@ -62,10 +62,10 @@ Refletido em detalhe no `implements.md` de cada feature; resumo aqui:
 
 | Feature | Status |
 |---------|--------|
-| F1 Ingestão e Normalização | Não iniciado |
-| F2 Estratégia de Chunking | Não iniciado |
-| F3 Embeddings e Vector Store | Não iniciado |
-| F4 Pipeline RAG | Não iniciado |
+| F1 Ingestão e Normalização | Concluído |
+| F2 Estratégia de Chunking | Concluído |
+| F3 Embeddings e Vector Store | Concluído |
+| F4 Pipeline RAG | Concluído |
 | F5 Golden Dataset | Não iniciado |
 | F6 Avaliação Automatizada | Não iniciado |
 | F7 Dashboard de Métricas | Não iniciado |

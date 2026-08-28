@@ -1,5 +1,18 @@
 from rag.dominio import Consulta
-from rag.pipeline import MENSAGEM_SEM_CONTEXTO, executar_pipeline
+from rag.pipeline import MENSAGEM_SEM_CONTEXTO, construir_grafo, executar_pipeline
+
+
+def test_construir_grafo_monta_um_grafo_langgraph_explicito():
+    """Requisito do plan.md da F4: pipeline como grafo/cadeia explícita
+    (LangChain/LangGraph), não uma função monolítica."""
+    grafo = construir_grafo(
+        gerar_embedding_consulta=lambda texto: [0.0],
+        buscar_similares=lambda vetor, k: [],
+        gerar_resposta=lambda prompt: "resposta",
+    )
+
+    nos = set(grafo.get_graph().nodes.keys())
+    assert {"retrieval", "prompt", "geracao", "sem_contexto"} <= nos
 
 
 class _ResultadoFalso:

@@ -13,6 +13,7 @@ Termos usados de forma consistente em specs, código, testes e commits. Se um te
 | **Consulta (Query)** | Pergunta em linguagem natural submetida ao pipeline RAG. |
 | **Contexto Recuperado** | Lista ordenada de Chunks retornados pela etapa de retrieval para uma Consulta. |
 | **Resposta Gerada** | Aggregate Root: saída do pipeline RAG para uma Consulta — contém a Consulta, o Contexto Recuperado, o texto da resposta e as citações às fontes. |
+| **Citação** | Value Object: referência de uma Resposta Gerada a um Chunk/Documento Jurisprudencial usado como base — identifica o Chunk e o documento de origem. Uma Resposta Gerada tem zero (sem contexto) ou mais Citações, deduplicadas por documento. |
 | **Caso Golden** | Entidade do Golden Dataset: par (pergunta, resposta de referência) validado manualmente por um humano, usado como baseline de avaliação. |
 | **Caso de Regressão** | Caso Golden originado de uma alucinação identificada em teste manual (RN04). Nunca é removido do Golden Dataset. |
 | **Judge Model** | Modelo de LLM usado pelo framework de avaliação (RAGAS/DeepEval) para pontuar métricas quando a métrica permite um "juiz" barato (RNF02). |

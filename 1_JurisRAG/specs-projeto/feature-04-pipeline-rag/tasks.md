@@ -18,8 +18,8 @@ Baseado em: [plan.md](plan.md). Seguir TDD (ver [constitutions.md](../constituti
 ## Definition of Done
 - [x] Todos os testes acima escritos e passando.
 - [x] Pipeline executa ponta a ponta sobre um subconjunto do golden dataset (smoke test).
-- [ ] Comportamento de "sem contexto suficiente" verificado manualmente em ao menos um caso real.
-- [ ] `specify.md`/`plan.md` revisados e sem divergência do código.
+- [x] Comportamento de "sem contexto suficiente" verificado manualmente em ao menos um caso real.
+- [x] `specify.md`/`plan.md` revisados e sem divergência do código.
 
 ## Próximo passo
 Durante e após a implementação, registrar progresso em [implements.md](implements.md).
