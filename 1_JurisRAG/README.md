@@ -1,10 +1,10 @@
 # JurisRAG
 
-RAG jurídico sobre jurisprudência pública do STJ, construído do zero e com avaliação automatizada de qualidade (RAGAS/DeepEval) como parte obrigatória do ciclo de entrega.
+RAG jurídico sobre jurisprudência pública do STJ, construído do zero e com avaliação automatizada de qualidade (DeepEval) como parte obrigatória do ciclo de entrega.
 
 ## Documentação
 
-- [spec-main.md](spec-main.md) — objetivo, regras de negócio, requisitos e critério de aceite do projeto.
+- [specs-projeto/spec-main.md](specs-projeto/spec-main.md) — objetivo, regras de negócio, requisitos e critério de aceite do projeto.
 - [specs-projeto/](specs-projeto/) — specs por feature (SDD/DDD/TDD/Clean Code), modelo de domínio e ordem de implementação.
 - [CLAUDE.md](CLAUDE.md) — arquitetura, convenções e comandos para desenvolvimento assistido.
 
@@ -31,13 +31,13 @@ pytest
 
 ```
 1_JurisRAG/
-├── spec-main.md         # requisitos do projeto
-├── specs-projeto/       # specs por feature + modelo de domínio (DDD)
+├── specs-projeto/       # spec-main.md (requisitos) + specs por feature + modelo de domínio (DDD)
 ├── src/                 # código por bounded context (ingestao, chunking, vectorstore, rag, avaliacao)
-├── dashboard/           # app Streamlit (F7)
-├── data/                # raw/processed (não versionados) e golden (versionado)
-├── tests/                # espelha src/, um módulo de teste por feature
-└── .github/workflows/   # CI (lint, testes e, futuramente, o gate de avaliação — F8)
+├── dashboard/           # app Streamlit — métricas (F7) e chat (F9)
+├── data/                # raw/processed (não versionados), golden e avaliações (versionados)
+└── tests/                # espelha src/, um módulo de teste por feature
 ```
+
+CI (lint, testes e o gate de avaliação — F8) vive em `../.github/workflows/ci.yml`, na raiz do repositório git — GitHub Actions só descobre workflows lá, não dentro de `1_JurisRAG/`.
 
 Detalhe de cada pasta em [CLAUDE.md](CLAUDE.md).
