@@ -11,7 +11,7 @@ dependencies = [
     "langchain-openai",
     "psycopg[binary]",
     "pgvector",
-    "ragas",
+    "deepeval",
     "streamlit",
     "plotly",
     "python-dotenv",

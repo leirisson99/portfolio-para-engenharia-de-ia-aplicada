@@ -67,7 +67,7 @@ Refletido em detalhe no `implements.md` de cada feature; resumo aqui:
 | F3 Embeddings e Vector Store | Concluído |
 | F4 Pipeline RAG | Concluído |
 | F5 Golden Dataset | Concluído |
-| F6 Avaliação Automatizada | Não iniciado |
+| F6 Avaliação Automatizada | Concluído |
 | F7 Dashboard de Métricas | Não iniciado |
 | F8 CI/CD Gate | Não iniciado |
 
