@@ -11,9 +11,11 @@ Concluído.
 - `dashboard/` ficou fora de `src/` (decisão de `plan.md` — não é um pacote consumido por outra feature); para os testes conseguirem importar `dashboard.series_temporal`, adicionei `"."` a `pythonpath` em `pyproject.toml` (`pythonpath = ["src", "."]`) e `"dashboard"` a `tool.ruff.src`.
 - 8 novos testes: `tests/dashboard/test_series_temporal.py` (6, unit puro) e `tests/dashboard/test_app.py` (2, smoke test via `streamlit.testing.v1.AppTest` — roda o script real e verifica `at.exception` vazio, com histórico de exemplo e com histórico vazio). `pytest` (96 testes no total do projeto), `ruff check .` e `mypy src`/`mypy dashboard` passando.
 - **Verificação manual com dados reais** (2026-08-27): subi `streamlit run dashboard/app.py` apontando para `data/avaliacoes/historico_execucoes.jsonl` real (as 2 Execuções de Avaliação reais gravadas por F6) — servidor respondeu HTTP 200, log sem erros/exceções.
+- **Atualização (2026-08-28, feature-09)**: quando a Interface de Chat (F9) virou uma segunda página, `dashboard/app.py` foi reestruturado para um roteador (`st.Page`/`st.navigation`, menu lateral com ícones) — a lógica desta feature (leitura do histórico, gráficos, tudo listado acima) foi movida sem alteração de comportamento para `dashboard/paginas/metricas.py`. Os testes de `test_app.py` continuam válidos sem mudança: `AppTest.from_file(app.py).run()` renderiza a página padrão (`default=True`), que é `metricas.py`.
 
 ## Desvios da spec
 - Nenhum desvio de `specify.md`/`plan.md` — a única decisão de implementação não detalhada no plan foi o mecanismo de leitura do caminho do histórico via variável de ambiente `AVALIACAO_HISTORICO_PATH` (para permitir o smoke test apontar para uma fixture sem precisar de um arquivo real em `data/`), seguindo o mesmo padrão já usado em F4/F6 para configuração via `.env`/ambiente.
+- A reestruturação de `app.py` em roteador (acima) foi motivada por F9, registrada lá com mais detalhe.
 
 ## Definition of Done — acompanhamento
 - [x] Todos os testes de `tasks.md` escritos e passando.

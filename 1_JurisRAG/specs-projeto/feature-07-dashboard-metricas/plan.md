@@ -13,6 +13,7 @@ Nenhuma entidade de negócio nova. Consome o Contrato de saída do contexto de A
 - Leitura do histórico versionado de Execuções de Avaliação (persistência definida em F6) via uma função de transformação pura (histórico → série temporal por métrica), testável sem subir o Streamlit.
 - Gráficos com Plotly, um por métrica, com linha de threshold sobreposta.
 - Sem cache/estado próprio além do que o Streamlit oferece — nenhum recálculo de métrica acontece aqui.
+- **Atualizado (F9)**: `dashboard/app.py` virou um roteador (`st.Page`/`st.navigation`, menu lateral) quando a Interface de Chat (F9) foi adicionada como segunda página — a lógica desta feature (leitura do histórico, gráficos) foi movida para `dashboard/paginas/metricas.py`, sem nenhuma mudança de comportamento. Ver [feature-09/implements.md](../feature-09-interface-chat/implements.md).
 
 ## Próximo passo
 [tasks.md](tasks.md) — lista de testes e tarefas de implementação.

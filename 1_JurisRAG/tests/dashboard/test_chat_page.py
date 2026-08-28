@@ -2,7 +2,7 @@ from pathlib import Path
 
 from streamlit.testing.v1 import AppTest
 
-CAMINHO_PAGINA = Path(__file__).resolve().parents[2] / "dashboard" / "pages" / "chat.py"
+CAMINHO_PAGINA = Path(__file__).resolve().parents[2] / "dashboard" / "paginas" / "chat.py"
 
 
 def test_pagina_de_chat_sobe_sem_erro_sem_nenhuma_pergunta_enviada():

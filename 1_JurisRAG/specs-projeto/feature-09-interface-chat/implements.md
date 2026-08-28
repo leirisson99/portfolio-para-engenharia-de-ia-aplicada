@@ -13,6 +13,7 @@ Concluído.
 
 ## Desvios da spec
 - Nenhum desvio de `specify.md`/`plan.md`.
+- **Revisão (2026-08-28)**: a pedido do usuário ("criar um menu para alternar as páginas"), trocada a descoberta automática de `dashboard/pages/` por um menu lateral explícito via `st.Page`/`st.navigation` — `dashboard/app.py` virou um roteador fino (`st.set_page_config` uma vez + `st.navigation([...]).run()`), e as duas páginas (métricas de F7, chat desta feature) moveram para `dashboard/paginas/` com rótulos e ícones ("📊 Métricas de Avaliação", "💬 Chat"). `st.set_page_config` foi removido de dentro de cada página individual (só pode ser chamado uma vez por execução — agora é responsabilidade do roteador). Os testes de `test_app.py` (F7) e `test_chat_page.py` (F9) continuaram passando sem alterar nenhuma asserção de comportamento — só o caminho do arquivo de `test_chat_page.py` mudou (`dashboard/pages/chat.py` → `dashboard/paginas/chat.py`). Verificado de novo com `streamlit run dashboard/app.py` real: servidor sobe limpo, menu lateral com as duas páginas aparece.
 
 ## Definition of Done — acompanhamento
 - [x] Todos os testes de `tasks.md` escritos e passando.

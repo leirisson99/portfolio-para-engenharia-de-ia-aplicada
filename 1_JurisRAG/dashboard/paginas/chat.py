@@ -3,8 +3,8 @@ from __future__ import annotations
 import os
 
 import streamlit as st
-from dashboard.chat_historico import Troca, montar_historico_exibicao
 
+from dashboard.chat_historico import Troca, montar_historico_exibicao
 from rag.dominio import Consulta, ContextoRecuperado, RespostaGerada
 from rag.geracao import criar_gerador_llm
 from rag.pipeline import executar_pipeline
@@ -63,7 +63,6 @@ def _obter_pipeline():  # type: ignore[no-untyped-def]
     return _pipeline_real()
 
 
-st.set_page_config(page_title="JurisRAG — Chat", layout="wide")
 st.title("JurisRAG — Pergunte sobre jurisprudência do STJ")
 st.caption(
     "Interface de demonstração do pipeline RAG (F4). As respostas não são "
