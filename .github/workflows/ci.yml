@@ -1,0 +1,63 @@
+name: CI (JurisRAG)
+
+on:
+  pull_request:
+    paths: ["1_JurisRAG/**"]
+  push:
+    branches: [main]
+    paths: ["1_JurisRAG/**"]
+
+defaults:
+  run:
+    working-directory: 1_JurisRAG
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    # RNF01 (F6) cobre só o tempo da avaliação em si (≤5min); a margem aqui
+    # inclui setup do runner, instalação de dependências e download do modelo
+    # de embeddings.
+    timeout-minutes: 15
+    services:
+      db:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: jurisrag
+          POSTGRES_PASSWORD: jurisrag
+          POSTGRES_DB: jurisrag
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://jurisrag:jurisrag@localhost:5432/jurisrag
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Testes
+        run: pytest
+
+      # RF04/RN02/RN03/F6 — o gate roda mesmo com o Vector Store do serviço
+      # `db` vazio (RF-8.1/RF-8.2 exigem apenas que o script rode e o exit code
+      # seja propagado); ver limitação registrada em
+      # specs-projeto/feature-08-ci-cd-gate/implements.md sobre popular um
+      # corpus real antes desta etapa.
+      - name: Avaliação (F6 — RN02/RN03)
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: openai/gpt-4o-mini
+          AVALIACAO_JUDGE_MODEL: openai/gpt-4o-mini
+        run: python -m avaliacao.executar_avaliacao_cli

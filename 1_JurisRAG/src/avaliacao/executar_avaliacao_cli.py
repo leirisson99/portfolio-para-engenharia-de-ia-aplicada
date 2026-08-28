@@ -15,7 +15,7 @@ from vectorstore.migrador import aplicar_migrations
 from vectorstore.modelo_embeddings import gerador_de_consulta
 from vectorstore.persistencia import buscar_similares
 
-from .dominio import THRESHOLDS_PADRAO
+from .dominio import THRESHOLDS_PADRAO, ExecucaoAvaliacao
 from .execucao import executar_avaliacao
 from .golden_dataset import carregar_casos_golden
 from .historico_execucoes import salvar_execucao
@@ -50,6 +50,13 @@ def _commit_sha_atual() -> str:
         ["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=True
     )
     return resultado.stdout.strip()
+
+
+def _codigo_saida(execucao: ExecucaoAvaliacao) -> int:
+    """RF-8.2: 0 se a Execução de Avaliação passou nos Thresholds (RN03), 1
+    caso contrário — o exit code é o contrato que o gate de CI (F8) consome
+    para bloquear ou liberar o merge."""
+    return 0 if execucao.passou else 1
 
 
 def main() -> int:
@@ -100,7 +107,7 @@ def main() -> int:
         limite = THRESHOLDS_PADRAO.get(nome)
         print(f"  {nome}: {valor:.3f} (threshold {limite})")
 
-    return 0 if execucao.passou else 1
+    return _codigo_saida(execucao)
 
 
 if __name__ == "__main__":

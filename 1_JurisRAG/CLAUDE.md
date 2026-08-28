@@ -22,7 +22,7 @@ ruff check .                  # lint
 mypy src                      # type check
 ```
 
-CI (`.github/workflows/ci.yml`) runs `ruff check .` and `pytest` on every PR and push to `main`. The evaluation gate (RN02/RN03/RF04) is not wired in yet — it's added as part of feature F8, once F6's evaluation script exists.
+CI (`../.github/workflows/ci.yml`, at the **repo root** — GitHub Actions only discovers workflows there, so this is a second exception to the "no top-level config for this project" rule, alongside `.pre-commit-config.yaml`; it's scoped to this project via `paths: ["1_JurisRAG/**"]` and `working-directory: 1_JurisRAG` defaults) runs `ruff check .`, `pytest`, and the evaluation gate (RN02/RN03/RF04, F6's `avaliacao.executar_avaliacao_cli`) on every PR and push to `main`. Requires the `OPENROUTER_API_KEY` GitHub Actions secret to be set on the repo (also used as the DeepEval judge model, F6) — branch protection requiring this job is configured in GitHub repo settings, not in this codebase.
 
 ### Pre-commit hook
 
@@ -94,7 +94,7 @@ Generation model (F4): OpenRouter (OpenAI-compatible API, `OPENROUTER_API_KEY`) 
 ├── specs-projeto/          # specs, domain model (see "Spec navigation" above)
 ├── pyproject.toml          # package + dependencies, pytest/ruff/mypy config
 ├── docker-compose.yml      # local PostgreSQL + pgvector
-├── .env.example            # DATABASE_URL, OPENROUTER_API_KEY (F4 generation), OPENAI_API_KEY (optional judge)
+├── .env.example            # DATABASE_URL, OPENROUTER_API_KEY (F4 generation + F6 judge), AVALIACAO_JUDGE_MODEL
 ├── src/
 │   ├── ingestao/           # F1 — Documento Jurisprudencial, Texto Normalizado
 │   ├── chunking/           # F2 — Chunk, Estratégia de Chunking
@@ -105,9 +105,11 @@ Generation model (F4): OpenRouter (OpenAI-compatible API, `OPENROUTER_API_KEY`) 
 ├── data/
 │   ├── raw/                 # gitignored — downloaded STJ dataset
 │   ├── processed/           # gitignored — cleaned/normalized intermediate output
-│   └── golden/               # versioned — golden dataset (RN05)
-├── tests/                   # mirrors src/ — one test folder per feature's Plano de Testes
-└── .github/workflows/ci.yml # lint + test on every PR; F8 adds the evaluation gate here
+│   ├── golden/               # versioned — golden dataset (RN05)
+│   └── avaliacoes/           # versioned — Execução de Avaliação history (F6, RNF03)
+└── tests/                   # mirrors src/ — one test folder per feature's Plano de Testes
 ```
+
+CI (F8) lives at `../.github/workflows/ci.yml` — outside this tree, at the repo root (see "Commands" above for why).
 
 Each `src/*` package currently holds only an empty `__init__.py`. Fill it in per the corresponding feature's spec — don't add code to a package before its feature's spec and tests exist.

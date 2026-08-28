@@ -69,7 +69,7 @@ Refletido em detalhe no `implements.md` de cada feature; resumo aqui:
 | F5 Golden Dataset | Concluído |
 | F6 Avaliação Automatizada | Concluído |
 | F7 Dashboard de Métricas | Concluído |
-| F8 CI/CD Gate | Não iniciado |
+| F8 CI/CD Gate | Em andamento (código pronto; branch protection/secret/PR de teste pendentes do usuário) |
 
 ## Fluxo de trabalho por feature (Constitution → Specify → Plan → Tasks → Implement)
 
