@@ -68,7 +68,7 @@ Refletido em detalhe no `implements.md` de cada feature; resumo aqui:
 | F4 Pipeline RAG | Concluído |
 | F5 Golden Dataset | Concluído |
 | F6 Avaliação Automatizada | Concluído |
-| F7 Dashboard de Métricas | Não iniciado |
+| F7 Dashboard de Métricas | Concluído |
 | F8 CI/CD Gate | Não iniciado |
 
 ## Fluxo de trabalho por feature (Constitution → Specify → Plan → Tasks → Implement)
