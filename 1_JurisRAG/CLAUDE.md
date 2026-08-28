@@ -14,7 +14,8 @@ Run from `1_JurisRAG/`:
 
 ```bash
 docker compose up -d          # start local PostgreSQL + pgvector (see docker-compose.yml)
-pip install -e ".[dev]"       # install package + dev deps (pytest, ruff, mypy)
+pip install -e ".[dev]"       # install package + dev deps (pytest, ruff, mypy, pre-commit)
+pre-commit install            # one-time, from the repo root — wires the git pre-commit hook below
 pytest                        # run tests (testpaths = tests/, src/ on pythonpath — see pyproject.toml)
 pytest tests/ingestao/test_x.py::test_y   # run a single test
 ruff check .                  # lint
@@ -22,6 +23,10 @@ mypy src                      # type check
 ```
 
 CI (`.github/workflows/ci.yml`) runs `ruff check .` and `pytest` on every PR and push to `main`. The evaluation gate (RN02/RN03/RF04) is not wired in yet — it's added as part of feature F8, once F6's evaluation script exists.
+
+### Pre-commit hook
+
+`pre-commit` (the framework, not a JurisRAG dependency at runtime) runs `ruff check` on staged files under `1_JurisRAG/` before each commit. Its config, `.pre-commit-config.yaml`, lives at the **repo root** — git hooks aren't scoped per-subdirectory, so this is the one piece of tooling that can't follow the "no top-level config for this project" rule above; the hook itself is scoped to `1_JurisRAG/` via a `files:` pattern so it stays a no-op for sibling projects. Run `pre-commit install` once per clone (from the repo root, or from `1_JurisRAG/` — either works) to activate it; without that step the hook is configured but not wired into `.git/hooks`, so commits go through unchecked.
 
 ## Spec navigation (read in this order)
 
