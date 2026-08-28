@@ -36,7 +36,10 @@ def criar_calculador_deepeval(modelo: str | None = None) -> CalculadorMetricas:
         ContextualRecallMetric,
         FaithfulnessMetric,
     )
-    from deepeval.models.llms.openrouter_model import OpenRouterModel
+
+    # Import do caminho público `deepeval.models` (não do submódulo interno
+    # `deepeval.models.llms.openrouter_model`) — mais estável entre versões.
+    from deepeval.models import OpenRouterModel
     from deepeval.test_case import LLMTestCase
 
     api_key = _variavel_obrigatoria("OPENROUTER_API_KEY")
