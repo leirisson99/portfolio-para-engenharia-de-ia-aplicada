@@ -31,7 +31,8 @@ specs-projeto/
 ├── feature-05-golden-dataset/             (mesmos 4 arquivos)
 ├── feature-06-avaliacao-automatizada/     (mesmos 4 arquivos)
 ├── feature-07-dashboard-metricas/         (mesmos 4 arquivos)
-└── feature-08-ci-cd-gate/                 (mesmos 4 arquivos)
+├── feature-08-ci-cd-gate/                 (mesmos 4 arquivos)
+└── feature-09-interface-chat/             (mesmos 4 arquivos — fora do escopo original de spec-main.md, pedida à parte)
 ```
 
 ## Ordem de execução e dependências
@@ -55,6 +56,7 @@ F5 Golden Dataset (pode iniciar após F1, em paralelo com F2/F3/F4) ────
 | F6 | Avaliação Automatizada | F4, F5 | RN01–RN04, RF02, RF05, RNF01, RNF02, RNF03 |
 | F7 | Dashboard de Métricas | F6 | RF03 |
 | F8 | CI/CD Gate | F6 | RF04, RN02, RN03 |
+| F9 | Interface de Chat | F4 | — (fora do escopo original de spec-main.md) |
 
 ## Status
 
@@ -70,6 +72,7 @@ Refletido em detalhe no `implements.md` de cada feature; resumo aqui:
 | F6 Avaliação Automatizada | Concluído |
 | F7 Dashboard de Métricas | Concluído |
 | F8 CI/CD Gate | Em andamento (código pronto; branch protection/secret/PR de teste pendentes do usuário) |
+| F9 Interface de Chat | Concluído |
 
 ## Fluxo de trabalho por feature (Constitution → Specify → Plan → Tasks → Implement)
 

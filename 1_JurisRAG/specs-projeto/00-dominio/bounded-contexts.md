@@ -13,7 +13,7 @@ O projeto tem cinco bounded contexts. Cada um tem seus próprios modelos interno
 **Contrato de saída:** índice pgvector consultável por similaridade.
 
 ## 3. RAG Core (Geração de Respostas)
-**Cobre:** F4 (Pipeline RAG)
+**Cobre:** F4 (Pipeline RAG), F9 (Interface de Chat — apenas apresenta o contrato numa UI, sem entidades próprias)
 **Entidades/VOs:** Consulta, Contexto Recuperado, Resposta Gerada
 **Contrato de saída:** `Resposta Gerada` (aggregate root) por Consulta.
 
