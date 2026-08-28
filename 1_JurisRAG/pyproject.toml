@@ -8,6 +8,7 @@ dependencies = [
     "langchain",
     "langgraph",
     "langchain-postgres",
+    "langchain-openai",
     "psycopg[binary]",
     "pgvector",
     "ragas",
@@ -15,6 +16,7 @@ dependencies = [
     "plotly",
     "python-dotenv",
     "datasets",
+    "sentence-transformers",
 ]
 
 [project.optional-dependencies]
@@ -48,3 +50,8 @@ select = ["E", "F", "I", "UP"]
 python_version = "3.11"
 mypy_path = "src"
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "numpy.*"
+follow_imports = "skip"
+follow_imports_for_stubs = true

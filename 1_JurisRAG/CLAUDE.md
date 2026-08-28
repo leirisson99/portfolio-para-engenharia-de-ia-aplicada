@@ -84,6 +84,8 @@ These are enforced by tests/CI, not convention — don't bypass them for conveni
 
 Python 3.11+, LangChain/LangGraph, RAGAS or DeepEval, PostgreSQL + pgvector (new schema, dedicated to this project — do not reuse an existing schema), GitHub Actions, Streamlit/Plotly. Dependencies are declared in [pyproject.toml](pyproject.toml) (unpinned for now — pin versions as each feature starts depending on specific behavior).
 
+Generation model (F4): OpenRouter (OpenAI-compatible API, `OPENROUTER_API_KEY`) — not Anthropic directly, decided when F4 started. Embeddings (F3): local `sentence-transformers` (`intfloat/multilingual-e5-small`), no API key needed — see [feature-03 plan.md](specs-projeto/feature-03-embeddings-vector-store/plan.md).
+
 ## Folder structure
 
 ```
@@ -92,7 +94,7 @@ Python 3.11+, LangChain/LangGraph, RAGAS or DeepEval, PostgreSQL + pgvector (new
 ├── specs-projeto/          # specs, domain model (see "Spec navigation" above)
 ├── pyproject.toml          # package + dependencies, pytest/ruff/mypy config
 ├── docker-compose.yml      # local PostgreSQL + pgvector
-├── .env.example            # DATABASE_URL, ANTHROPIC_API_KEY, OPENAI_API_KEY (optional judge)
+├── .env.example            # DATABASE_URL, OPENROUTER_API_KEY (F4 generation), OPENAI_API_KEY (optional judge)
 ├── src/
 │   ├── ingestao/           # F1 — Documento Jurisprudencial, Texto Normalizado
 │   ├── chunking/           # F2 — Chunk, Estratégia de Chunking
